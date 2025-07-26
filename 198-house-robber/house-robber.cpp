@@ -7,7 +7,6 @@ public:
 
         int pre2=nums[0];
         int pre1=max(nums[0],nums[1]);
-
         int curr;
 
         for(int i=2;i<n;i++){
