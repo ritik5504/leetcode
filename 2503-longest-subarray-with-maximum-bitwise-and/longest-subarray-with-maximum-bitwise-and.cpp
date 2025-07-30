@@ -5,8 +5,8 @@ public:
 
         int curr=0,maxlen=0;
 
-        for(int num:nums){
-            if(num==maxv){
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==maxv){
                 curr++;
                 maxlen=max(maxlen,curr);
             }else{
