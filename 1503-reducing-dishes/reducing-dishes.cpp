@@ -1,19 +1,24 @@
 class Solution {
 public:
-    int solve(vector<int>& satisfaction,int idx,int time, vector<vector<int>>&dp){
-        if(idx==satisfaction.size()) return 0;
-        if(dp[idx][time] != -1) return dp[idx][time];
+    int solve(vector<int>& satisfaction){
+        int n=satisfaction.size();
+        vector<vector<int>>dp(n+1,vector<int>(n+1,0));
 
-        int inc=satisfaction[idx]*(time+1)+solve(satisfaction,idx+1,time+1,dp);
-        int exc=solve(satisfaction,idx+1,time,dp);
+        for(int i=n-1;i>=0;i--){
+            for(int time=i;time>=0;time--){
+                int inc=satisfaction[i]*(time+1)+dp[i+1][time+1];
+                int exc=dp[i+1][time];
 
-        return dp[idx][time]= max(inc,exc);
-
+                 dp[i][time]=max(inc,exc);
+            }
+        }
+        return dp[0][0];
     }
     int maxSatisfaction(vector<int>& satisfaction) {
-        int n=satisfaction.size();
         sort(satisfaction.begin(),satisfaction.end());
-        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
-        return solve(satisfaction,0,0,dp);
+
+        return solve(satisfaction);
+        
+        
     }
 };
