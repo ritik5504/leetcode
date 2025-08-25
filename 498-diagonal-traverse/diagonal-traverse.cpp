@@ -4,7 +4,7 @@ public:
         int m = mat.size(), n = mat[0].size();
         vector<vector<int>> dia(m + n - 1);
 
-        // Loop over rows (i) and columns (j)
+        
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
                 dia[i + j].push_back(mat[i][j]);
@@ -13,7 +13,7 @@ public:
 
         vector<int> ans;
 
-        // Collect diagonals
+      
         for(int d = 0; d < dia.size(); d++) {
             if(d % 2 == 0) {
                 reverse(dia[d].begin(), dia[d].end());
