@@ -1,29 +1,32 @@
 class Solution {
 public:
-    bool solve(int idx,vector<int>& nums,int n,int target,vector<vector<int>>&dp){
-        if(target < 0) return 0;
-        if(idx>= n) return 0;
-        if(target == 0) return 1;
+    bool solve(vector<int>& nums, int i, int sum, vector<vector<int>>& dp){
+        if(sum == 0) return 1;
+        if(i == nums.size()) return 0;
 
-        if(dp[idx][target] != -1) return dp[idx][target];
+        if(dp[i][sum] != -1) return dp[i][sum];
 
-        int inc=solve(idx+1,nums,n,target-nums[idx],dp);
-        int exc=solve(idx+1,nums,n,target,dp);
+        bool ans = false;
 
-        return dp[idx][target]=inc or exc;
+        if(nums[i] <= sum){
+            ans = ans || solve(nums, i+1, sum-nums[i], dp);
+        }
+        ans = ans || solve(nums, i+1, sum, dp);
+
+        return dp[i][sum] = ans;
     }
     bool canPartition(vector<int>& nums) {
-        int n=nums.size();
-        int total =0;
-        for(int i=0;i<n;i++){
-            total += nums[i];
+        int n = nums.size(), sum = 0;
+
+
+        for(int i = 0; i < n; i++){
+            sum += nums[i];
         }
-        if(total % 2 != 0) return 0;
-        int target=total/2;
 
-        vector<vector<int>>dp(n,vector<int>(target+1,-1));
+        if(sum % 2 != 0) return false;
 
-        return solve(0,nums,n,target,dp);
-        
+        vector<vector<int>> dp(n, vector<int> ((sum/2)+1, -1));
+
+        return solve(nums, 0, sum/2, dp);
     }
 };
