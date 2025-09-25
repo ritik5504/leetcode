@@ -4,7 +4,7 @@ public:
         int n = nums.size();
         int currMax = nums[0];
         int currMin = nums[0];
-        int globalMax = nums[0];
+        int ans = nums[0];
         
         for(int i = 1; i < n; i++) {
             int num = nums[i];
@@ -14,9 +14,9 @@ public:
             currMax = tempMax;
             currMin = tempMin;
             
-            globalMax = max(globalMax, currMax);
+            ans = max(ans, currMax);
         }
         
-        return globalMax;
+        return ans;
     }
 };
