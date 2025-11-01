@@ -22,7 +22,7 @@ public:
 
         ListNode* curr = head;
         while(curr){
-            if(mp.find(curr->val) != mp.end()){
+            if(mp[curr->val] == 1){
                 prev->next = curr->next;
             } else {
                 prev = curr;
