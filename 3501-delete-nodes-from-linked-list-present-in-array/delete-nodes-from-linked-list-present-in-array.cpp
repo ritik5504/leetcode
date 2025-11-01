@@ -16,7 +16,7 @@ public:
             mp[nums[i]]++;
         }
 
-        ListNode* dummy = new ListNode(-1);
+        ListNode* dummy = new ListNode(0);
         dummy->next = head;
         ListNode* prev = dummy;
 
