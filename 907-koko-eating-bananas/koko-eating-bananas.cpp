@@ -1,12 +1,12 @@
 class Solution {
 public:
-    bool solve(vector<int>& piles,int k,int h){
-        long long hour=0;
+    int solve(vector<int>& piles, int k,int h){
+        long long time=0;
 
         for(int pile:piles){
-            hour += (pile +k-1)/k;
-
-        }return hour <= h;
+            time += (pile+k-1)/k;
+        }
+        return time <= h;
     }
     int minEatingSpeed(vector<int>& piles, int h) {
         int left=1;
@@ -24,5 +24,6 @@ public:
             }
         }
         return ans;
+        
     }
 };
