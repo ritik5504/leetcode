@@ -1,25 +1,13 @@
 class Solution {
 public:
     int findFinalValue(vector<int>& nums, int original) {
-        int n=nums.size();
-
-        while(true){
-            bool ans=false;
-
-            for(int i=0;i<n;i++){
-                if(nums[i]==original){
-                    original *= 2;
-                    ans=true;
-                    break;
-                }
-                
-
-            }
-            if(!ans){
-                    break;
-                }
+        unordered_set<int>st;
+        for(int i:nums){
+            st.insert(i);
+        }
+        while(st.count(original)){
+            original *= 2;
         }
         return original;
-        
     }
 };
